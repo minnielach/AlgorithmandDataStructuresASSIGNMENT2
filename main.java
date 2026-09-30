@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.until.List;
+import java.util.List;
 
 public class main {
 
@@ -25,14 +25,15 @@ public class main {
         }
         
         return node.height;
+    }
 
-        static int updateHeight(Node node) {
-            if (node == null) {
-                return 0;
-            }
-            node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
-            return node.height;
+    static int updateHeight(Node node) {
+        if (node == null) {
+            return 0;
         }
+        node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
+        return node.height;
+    }
 
 
     // === ROTATIONS ===
@@ -232,6 +233,43 @@ public class main {
         String line = scanner.nextLine();
         scanner.close();
 
+        // seperate by splitting
+        String[] input = line.split(" ");
+
+        // start w empty tree
+        Node root = null;
+
+        for (int i = 0; i < input.length - 1; i++) {
+            String action = input[i];
+            int key = Integer.parseInt(action.substring(1));
+            
+            // insert
+            if (action.charAt(0) == 'A') {
+                root = insert(root, key);
+            } 
+            // delete
+            else if (action.charAt(0) == 'D') {
+                root = deleteNode(root, key);
+            }
+        }
+
+        String transversal = input[input.length - 1];
+
+        List<Integer> result;
+
+        // transversal order from user input
+
+        if (transversal.equals("PRE")) {
+            result = preOrder(root);
+        } 
+        else if (transversal.equals("IN")) {
+            result = inOrder(root);
+        }
+        else if (transversal.equals("POST")) {
+            result = postOrder(root);
+        }
+
+
     }
-    
 }
+
