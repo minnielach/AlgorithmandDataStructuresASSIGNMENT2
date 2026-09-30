@@ -80,7 +80,7 @@ public class main {
         int balance = getHeight(root.left) - getHeight(root.right);
 
         // Left left
-        if (balance > 1 && key < root.left.ket) {
+        if (balance > 1 && key < root.left.key) {
             return rotateRight(root);
         }
 
@@ -97,9 +97,11 @@ public class main {
 
         // right left
         if (balance < -1 && key < root.right.key) {
-            root.right = rotateright(root.right);
+            root.right = rotateRight(root.right);
             return rotateLeft(root);
         }
+
+        return root;
     }
     // === DELETE HELPERS ===
     static Node minValueNode(Node node) {
@@ -267,9 +269,22 @@ public class main {
         }
         else if (transversal.equals("POST")) {
             result = postOrder(root);
+        } else {
+            result = null;
         }
 
-
+        if (result.isEmpty()) {
+            System.out.println("EMPTY");
+        } 
+        else {
+            for (int i = 0; i < result.size(); i++) {
+                if (i > 0) {
+                    System.out.print(" ");
+                }
+                
+                System.out.print(result.get(i));
+            }
+        }
     }
 }
 
