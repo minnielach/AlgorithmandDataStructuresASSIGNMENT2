@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.until.List;
 
 public class main {
 
@@ -173,8 +175,54 @@ public class main {
         }
 
         return getHeight(root.left) - getHeight(root.right);
-
     }
+
+    // === TRANVERSAL ===
+    // === PREORDDER ===
+    static List<Integer> preOrder(Node root) {
+        List<Integer> result = new ArrayList<>();
+
+        if (root == null) {
+            return result;
+        }
+
+        result.add(root.key);
+        result.addAll(preOrder(root.left));
+        result.addAll(preOrder(root.right));
+
+        return result;
+    }
+
+    // === INORDER ===
+    static List<Integer> inOrder(Node root) {
+        List<Integer> result = new ArrayList<>();
+
+        if (root == null) {
+            return result;
+        }
+
+        result.addAll(inOrder(root.left));
+        result.add(root.key);
+        result.addAll(inOrder(root.right));
+
+        return result;
+    }
+
+    // === POSTORDER
+    static List<Integer> postOrder(Node root) {
+        List<Integer> result = new ArrayList<>();
+
+        if (root == null) {
+            return result;
+        }
+
+        result.addAll(postOrder(root.left));
+        result.addAll(postOrder(root.right));
+        result.add(root.key);
+
+        return result;
+    }
+
 
 
     // === MAIN ===
